@@ -1,0 +1,12 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: genki-site
+    ports:
+      - "8443:443"
+    volumes:
+      - ../:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /opt/genki/server.crt:/etc/nginx/certs/server.crt:ro
+      - /opt/genki/server.key:/etc/nginx/certs/server.key:ro
+    restart: always
